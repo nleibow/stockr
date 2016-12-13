@@ -12,6 +12,7 @@ $('#searchbtn').click(function(e){
 		var trueAnswer = {"Ticker": answer[0].t, "Last Price": answer[0].l};
 		console.log(trueAnswer);
 		 e.preventDefault();
+		 
 	});
 });});
 

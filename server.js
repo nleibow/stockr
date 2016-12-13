@@ -1,36 +1,51 @@
 var request = require('request');
-var express = require('express'),
-    app = express();
-
+var express = require('express');
+var app = express();
 var db = require('./models');
-var Stock = require('./models/stock-model.js')
-var trueAnswer = require('./public/js/main.js');
-//var jQuery = require('jQuery'); 
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var routes = require('./config/routes');
+var rootDir = __dirname;
+app.use(routes);
 
-// parse incoming urlencoded form data
-// and populate the req.body object
+
+
+// app.use(morgan('dev'));
+// app.use(cookieParser());
+// app.use(bodyParser());
+
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function indexpage (req, res) {
-  res.sendFile(__dirname + '/webpages/index.html');
-});
+// app.get('/', function indexpage (req, res) {
+//   res.sendFile(__dirname + '/webpages/index.html');
+// });
 
-app.get('/loggedIn.html', function logedpage (req, res) {
-  res.sendFile(__dirname + '/webpages/loggedIn.html');
-});
+// app.get('/loggedIn.html', function logedpage (req, res) {
+//   res.sendFile(__dirname + '/webpages/loggedIn.html');
+// });
 
-app.get('/searchPage.html', function searchpage (req, res) {
-  res.sendFile(__dirname + '/webpages/searchPage.html');
-});
+// app.get('/searchPage.html', function searchpage (req, res) {
+//   res.sendFile(__dirname + '/webpages/searchPage.html');
+// });
 
-app.get('/homePage.html', function homepage (req, res) {
-  res.sendFile(__dirname + '/webpages/homePage.html');
-});
+// app.get('/homePage.html', function homepage (req, res) {
+//   res.sendFile(__dirname + '/webpages/homePage.html');
+// });
 
+// app.use(session({ secret: 'WDI-GA-EXPRESS' }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(flash());
 
-app.use(express.static(__dirname + '/public'));
+ app.use(express.static(__dirname + '/public'));
 
 
 // function getIt()
@@ -75,14 +90,26 @@ app.use(express.static(__dirname + '/public'));
 //         e.preventDefault();
 //     })});
 
-db.Stock.create(trueAnswer, function(err, stock){
-  if (err){
-    return console.log("Error:", err);
-  }
+// db.Stock.create(trueAnswer, function(err, stock){
+//   if (err){
+//     return console.log("Error:", err);
+//   }
 
-  console.log("Created new stock", stock._id)
-  process.exit(); // we're all done! Exit the program.
-})
+//   console.log("Created new stock", stock._id)
+//   process.exit(); // we're all done! Exit the program.
+// })
+
+// require('./config/passport')(passport);
+
+// app.use(function(req, res, next) {
+//     res.locals.currentUser = req.user;
+//     next();
+// });
+
+// var routes = require('./config/routes');
+// app.use(routes);
+
+
 
 
 

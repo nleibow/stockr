@@ -5,5 +5,5 @@ mongoose.connect( process.env.MONGODB_URI ||
                   "mongodb://localhost/stockr");
 
 // module.exports.Campsite = require("./campsite.js.example");
-
+module.exports.User = require("./user.js");
 module.exports.Stock = require("./stock-model.js");
