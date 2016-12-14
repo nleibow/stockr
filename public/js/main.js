@@ -10,12 +10,12 @@ $('#searchbtn').click(function(e){
 	 $.get(url, function(req, res){
 		var bodyRight =(req.substr(3));
 		var answer = JSON.parse(bodyRight);
-		var trueAnswer = {"Ticker": answer[0].t, "Last Price": answer[0].l};
+		var trueAnswer = {"Ticker": answer[0].t, "LastPrice": answer[0].l};
 		console.log(trueAnswer);
 		 e.preventDefault();
-		 // $.post(__dirname + '/stockr', trueAnswer, function(){
-		 // 	console.log('somthing happened it was good');
-		 // });
+		  $.post('/api', trueAnswer, function(){
+		  	console.log('somthing happened it was good');
+		  });
 		 
 	});
 });});

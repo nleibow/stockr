@@ -13,8 +13,13 @@ var routes = require('../config/routes');
 
 
 function postStock(req, res){
+	console.log(req);
+	console.log(res);
 	db.Stock.create(req.body, function it(err, stocks){
-		console.log(stocks);
 	})
 
+}
+
+module.exports = {
+	postStock: postStock
 }

@@ -19,11 +19,12 @@ function postSignup(request, response, next) {
 
 // GET /login
 function getLogin(request, response) { 
-	response.render('login.ejs', {message: request.flash('signupMessage')});
+	response.render('loggedIn.ejs', {message: request.flash('signupMessage')});
 	}
 
 // POST /login 
 function postLogin(request, response, next) {
+	console.log('logged in as user');
 	var loginStrategy = passport.authenticate('local-login', {
 		successRedirect : '/loggedIn',
 		failureRedirect : '/',

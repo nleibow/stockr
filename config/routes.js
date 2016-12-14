@@ -14,12 +14,14 @@ function authenticatedUser(req, res, next){
 
 router.route('/api')
 	.post(stocksController.postStock)
-	
+
 
 router.route('/signUp')
+  .get(usersController.getSignup)
   .post(usersController.postSignup)
 
 router.route('/login')
+  .get(usersController.getLogin)
   .post(usersController.postLogin)  
 
  router.get('/', function (req, res) {
