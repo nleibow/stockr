@@ -1,8 +1,13 @@
 var request = require('request');
 var express = require('express');
+var mongoose = require("mongoose");
+//  mongoose.connect( //process.env.MONGODB_URI || 
+// //                   process.env.MONGOLAB_URI || 
+// //                   process.env.MONGOHQ_URL || 
+//                   "mongodb://localhost/stockr");
+
 var app = express();
 var db = require('./models');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 var morgan = require('morgan');
@@ -11,18 +16,54 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes = require('./config/routes');
 var rootDir = __dirname;
+
+
+
+var bodyParser = require('body-parser');
+
+app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+app.set('views','./views');
+app.engine('ejs',require('ejs').renderFile);
+app.set('view engine',"ejs");
+
+
+
+app.use(session({ secret: 'WDI-GA-EXPRESS' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+require('./config/passport')(passport);
+
+
+
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
 app.use(routes);
+
 
 
 
 // app.use(morgan('dev'));
 // app.use(cookieParser());
 // app.use(bodyParser());
+// app.post('/api/stocks', function new_stock(req, res){
+// 	console.log(res);
+//   db.Album.create(req.body, function(err, albums) {
+//   res.redirect('loggedIn.html');});
+// });
 
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
+
+
 
 // app.get('/', function indexpage (req, res) {
 //   res.sendFile(__dirname + '/webpages/index.html');
@@ -40,12 +81,9 @@ app.use(bodyParser.json());
 //   res.sendFile(__dirname + '/webpages/homePage.html');
 // });
 
-// app.use(session({ secret: 'WDI-GA-EXPRESS' }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(flash());
 
- app.use(express.static(__dirname + '/public'));
+
+ 
 
 
 // function getIt()
@@ -99,7 +137,6 @@ app.use(bodyParser.json());
 //   process.exit(); // we're all done! Exit the program.
 // })
 
-// require('./config/passport')(passport);
 
 // app.use(function(req, res, next) {
 //     res.locals.currentUser = req.user;

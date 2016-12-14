@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Sample Project</title>
-
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Latest compiled and minified CSS -->
@@ -12,6 +12,10 @@
 	<script type="text/javascript" src="server.js"></script>
 </head>
 <body>
+		
+<% if (message) {%>
+   <div class="alert alert-danger"><%= message %></div>
+   <%}%>
 
 	<div class="container-fluid">
 		<div class="container" id="login-box">
@@ -45,7 +49,7 @@
 					        <h4 class="modal-title" id="myModalLabel">Please Enter The Fields Below With Your Information</h4>
 					      </div>
 					      <div class="modal-body">
-					      		<form method="post" action="/loggedIn" class="form-inline">
+					      		<form method="post" action="/login" class="form-inline">
 										  <div class="form-group">
 										    <label for="exampleInputName2">Email</label>
 										    <input type="text" class="form-control" id="exampleInputName2" placeholder="Email Goes Here">
@@ -54,11 +58,8 @@
 										    <label for="exampleInputEmail2">Password</label>
 										    <input type="Password" class="form-control" id="exampleInputEmail2" placeholder="Type Password Here">
 										  </div>
-										<span 
-											   class="button" 
-											   onclick="location='http://localhost:3000/loggedIn.html'">
-											Lets get in!
-										</span>
+										  <input type="submit" class="btn btn-default">Les stock!</input>
+										
 
 
 										</form>
@@ -89,11 +90,11 @@
 					        <form method="post" action="/signUp" class="form-inline">
 										  <div class="form-group">
 										    <label for="exampleInputName2">Email</label>
-										    <input type="text" class="form-control" id="exampleInputName2" placeholder="Email Goes Here">
+										    <input type="email" name="email" class="form-control" id="exampleInputName2" placeholder="Email Goes Here">
 										  </div>
 										  <div class="form-group">
 										    <label for="exampleInputEmail2">Password</label>
-										    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Type Password Here">
+										    <input type="password" name="password" class="form-control" id="exampleInputEmail2" placeholder="Type Password Here">
 										  </div>
 										   
 										  <input type="submit" class="btn btn-default">Make me an Account!</input>

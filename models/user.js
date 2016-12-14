@@ -3,11 +3,33 @@ var mongoose = require('mongoose'),
 
 var bcrypt = require('bcrypt-nodejs');
 
+
+
+
+
+
+var StockSchema = new Schema({
+  Ticker: String,
+  LastPrice: Number
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 var UserSchema = new Schema({
 	local:{
-  userName: String,
+  email: String,
   password: String,
-  //stocks:[StockSchema]
+  stocks:[StockSchema]
 }});
 
 UserSchema.methods.encrypt = function(password){

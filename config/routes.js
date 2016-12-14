@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
+var stocksController = require('../controllers/stocks');
 var staticsController = require('../controllers/statics');
 
 function authenticatedUser(req, res, next){
@@ -11,42 +12,36 @@ function authenticatedUser(req, res, next){
 	res.redirect('/');
 }
 
-// router.route('/')
-//   .get(staticsController.home);
+router.route('/api')
+	.post(stocksController.postStock)
+	
 
-router.route('/')
+router.route('/signUp')
   .post(usersController.postSignup)
 
-// router.route('/')
-//   .get(usersController.getLogin)
-//   .post(usersController.postLogin)
+router.route('/login')
+  .post(usersController.postLogin)  
+
  router.get('/', function (req, res) {
-  res.sendFile( '/stockr/webpages/index.html', {'root': '../'});
+  res.render( 'index.ejs', {message: req.flash('signupMessage')});
 });
 
-router.get('/loggedIn.html', function logedpage (req, res) {
-  res.sendFile('/stockr/webpages/loggedIn.html', {'root': '../'});
+router.get('/loggedIn', function loggedpage (req, res) {
+  res.render('loggedIn.ejs');
 });
 
-router.get('/searchPage.html', function searchpage (req, res) {
-  res.sendFile('/stockr/webpages/searchPage.html', {'root': '../'});
+router.get('/searchPage', function searchpage (req, res) {
+  res.render('searchPage.ejs');
 });
 
-router.get('/homePage.html', function homepage (req, res) {
-  res.sendFile('/webpages/homePage.html',{'root': '../'});
+router.get('/homePage', function homepage (req, res) {
+  res.render('homePage.ejs');
 });
 
 
 router.route("/logout")
   .get(usersController.getLogout)
 
-router.route('/searchPage')
-	.get(authenticatedUser, usersController.secret)  
-
-router.route('/homePage')
-	.get(authenticatedUser, usersController.secret)  
-
-router.route('/loggedIn')
-	.get(authenticatedUser, usersController.secret) 	
+ 	
 
 module.exports = router;

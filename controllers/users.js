@@ -1,4 +1,4 @@
-var passport = require("passport")
+var passport = require("passport");
 
 // GET /signup
 function getSignup(request, response) {
@@ -6,14 +6,15 @@ function getSignup(request, response) {
 }
 
 // POST /signup
-function postSignup(request, response) {
+function postSignup(request, response, next) {
+	console.log('posting signup');
 	var signupStrategy = passport.authenticate('local-signup', {
 		successRedirect : '/loggedIn',
 		failureRedirect : '/',
 		failureFlash : true
 	});
 
-	return signupStrategy(request, response);
+	return signupStrategy(request, response, next);
 }
 
 // GET /login
@@ -22,14 +23,14 @@ function getLogin(request, response) {
 	}
 
 // POST /login 
-function postLogin(request, response) {
+function postLogin(request, response, next) {
 	var loginStrategy = passport.authenticate('local-login', {
 		successRedirect : '/loggedIn',
 		failureRedirect : '/',
 		failureFlash : true
 	});
 
-	return loginStrategy(request, response);
+	return loginStrategy(request, response, next);
 };
 
 // GET /logout
@@ -39,9 +40,9 @@ function getLogout(request, response) {
 }
 
 
-function secret(request, response){
-	render("its a secret!");
-}
+// function secret(request, response){
+// 	render("its a secret!");
+// }
 
 module.exports = {
   getLogin: getLogin,
@@ -49,5 +50,4 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  secret: secret
 }

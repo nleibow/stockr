@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Sample Project</title>
-
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Latest compiled and minified CSS -->
@@ -12,6 +12,10 @@
 	<script type="text/javascript" src="server.js"></script>
 </head>
 <body>
+		
+<% if (message) {%>
+   <div class="alert alert-danger"><%= message %></div>
+   <%}%>
 
 	<div class="container-fluid">
 		<div class="container" id="login-box">
