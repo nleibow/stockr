@@ -4,22 +4,10 @@ var mongoose = require('mongoose'),
 var bcrypt = require('bcrypt-nodejs');
 
 
-
-
-
-
 var StockSchema = new Schema({
   Ticker: String,
   LastPrice: Number
 });
-
-
-
-
-
-
-
-
 
 
 

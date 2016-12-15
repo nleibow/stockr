@@ -14,6 +14,7 @@ function authenticatedUser(req, res, next){
 
 router.route('/api')
 	.post(stocksController.postStock)
+	.get(stocksController.getStock)
 
 
 router.route('/signUp')
