@@ -5,7 +5,7 @@ console.log('connected1');
 $(document).ready(function(){
 $('#searchbtn').click(function(e){
 	var stock = $("#stockLook").val();
-	var url = "http://finance.google.com/finance/info?client=ig&q=NSE:" + stock;
+	var url = "https://finance.google.com/finance/info?client=ig&q=NSE:" + stock;
 	 $.get(url, function(req, res){
 		var bodyRight =(req.substr(3));
 		var answer = JSON.parse(bodyRight);
