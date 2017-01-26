@@ -11,6 +11,9 @@ body{
   	text-align: center;
 	min-height: 100vh;
 }  
+.navbuttons:hover{
+  background-color: transparent;
+}
 .navbuttons{
 
 	background-color: rgba(61, 60, 60, .1);
