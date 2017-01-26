@@ -32,6 +32,7 @@ router.route('/login')
 router.get('/loggedIn', function loggedpage (req, res) {
   res.render('loggedIn.ejs');
 });
+router.post('/loggedIn', usersController.postLogin);
 
 router.get('/searchPage', function searchpage (req, res) {
   res.render('searchPage.ejs');
